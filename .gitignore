@@ -1,0 +1,32 @@
+# ===== colcon / ROS 2 워크스페이스 산출물 =====
+# 빌드 결과물은 src/ 로부터 재생성되므로 절대 커밋하지 않는다.
+build/
+install/
+log/
+
+# ===== src/ 정책: 우리 패키지만 추적 =====
+# 업스트림 패키지(turtlebot3, DynamixelSDK, manipulation 등)는 각자
+# 자체 .git 으로 클론된 vendored 코드라 이 레포에 넣지 않는다.
+# 동료는 해당 패키지를 별도로 clone / rosdep 하면 된다.
+src/*
+!src/my_nav2/
+!src/my_cartographer/
+
+# ===== Python 캐시 =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ===== 에디터 / OS =====
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+
+# ===== 맵 / 대용량 산출물 (워크스페이스 밖 ~/maps 가 정식 위치) =====
+# 패키지 내부 설정용 마스크(my_nav2/map/*.pgm)는 의도적으로 추적함.
+# 그 외 작업용 맵 결과물이 src 에 섞여 들어오면 무시.
+*.bag
+*.db3

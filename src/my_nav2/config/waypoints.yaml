@@ -1,0 +1,26 @@
+# Home 위치 — AMCL 초기화 시 사용
+home:
+  x: 0.0
+  y: 0.0
+  yaw: 0.0
+
+# 순회할 waypoint들
+waypoints:
+  - name: "point_A"
+    x: 1.0
+    y: 0.5
+    yaw: 0.0
+  - name: "point_B"
+    x: 2.0
+    y: 1.0
+    yaw: 1.57
+  - name: "point_C"
+    x: 1.0
+    y: 1.5
+    yaw: 3.14
+
+# 순회 설정
+patrol:
+  loop: true            # true면 무한 순환, false면 한 번만
+  wait_at_each: 3.0     # 각 waypoint에 도착 후 대기 시간(초)
+  retry_on_failure: 2   # 실패 시 재시도 횟수
