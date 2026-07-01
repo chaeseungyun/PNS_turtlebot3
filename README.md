@@ -21,10 +21,14 @@
 - [docs/10-hardware-facts.md](docs/10-hardware-facts.md) — 로봇/센서 물리 구성(라이다 90° 등) 복구 사실
 - [docs/30-gap-analysis.md](docs/30-gap-analysis.md) — git 베이스라인 vs 목표 상태 격차
 - [docs/40-reconstruction-log.md](docs/40-reconstruction-log.md) — Phase 1 재구성 내역·검증
+- [docs/50-phase2-procedure.md](docs/50-phase2-procedure.md) — Phase 2 절차(요구사항 R1~R7) + 라이다90°·차폐·카메라 실측
+- [docs/60-network-workaround.md](docs/60-network-workaround.md) — **VM Wi-Fi 단편화 손실 + scan_relay 우회**
 - [notes/original-obsidian-note.md](notes/original-obsidian-note.md) — 분실 전 원본 노트 원문
 
-## 📊 현재 진행 (2026-06-30)
-- ✅ ROS 2 Humble 환경 복구, git clone (`chaeseungyun/PNS_turtlebot3`)
-- ✅ **Phase 1 코드/설정 재구성 완료** (behavior_server·inflation 0.22·particle_cloud·스핀 자동화) — 빌드/타입 검증 OK
-- ⏳ **Phase 2 (로봇 연결 후)**: 재매핑(라이다 90° 반영), 카메라→costmap + camera TF, 실주행 검증
-- 작업 위치: `~/turtlebot3_ws/src/PNS_turtlebot3` (이 VM은 임시 → **코드+문서 통합 repo**를 git로 새 PC 이전)
+## 📊 현재 진행 (2026-07-01)
+- ✅ ROS 2 Humble 환경 복구, git clone, Phase 1 코드/설정 재구성(빌드/타입 검증 OK)
+- ✅ **로봇 실측**: 라이다 90°(base_scan yaw=90) 확정, 좌측 팔 차폐 정상, 카메라 TF 존재
+- ✅ **카메라→costmap 노드 재작성**(`camera_obstacle_node.py`): 바닥 HSV+IPM, 로봇 로컬 실행, 근거리 검출 실용 수준
+- ✅ **네트워크 병목 해결**: VM Wi-Fi 브리지가 단편화(큰) 패킷 100% 손실 → `scan_relay.py`(다운샘플+reliable)로 `/scan` PC 10Hz 확보. [[60-network-workaround]]
+- ⏳ 남은 것: scan_relay에 팔 차폐 통합(/scan_filtered), 노드 자동시작, AMCL 자동수렴→순회, 카메라 캘리브레이션
+- 작업 위치: `~/turtlebot3_ws/src/PNS_turtlebot3` (코드+문서 통합 repo, git로 새 PC 이전 가능)

@@ -24,6 +24,8 @@ install(PROGRAMS
 scripts/auto_patrol_node.py
 scripts/make_keepout_mask.py
 scripts/scan_arm_mask.py
+scripts/camera_obstacle_node.py
+scripts/scan_relay.py
 DESTINATION lib/${PROJECT_NAME}
 )
 
